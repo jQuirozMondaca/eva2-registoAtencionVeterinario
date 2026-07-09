@@ -1,3 +1,8 @@
+/* ============================================
+   Registro de Atención Veterinaria — estilos
+   Paleta: consultorio cálido, no clínico-frío
+   ============================================ */
+
 :root {
     --teal-900: #0f3d3e;
     --teal-700: #1f6b6a;
@@ -39,9 +44,26 @@ body {
 }
 
 body {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--cream);
     background-image:
         radial-gradient(circle at 100% 0%, var(--teal-100) 0%, transparent 45%);
     min-height: 100vh;
+}
+
+/* Textura de fondo: patrón de íconos veterinarios */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url("../assets/img/patron-veterinario.jpg");
+    background-repeat: repeat;
+    background-size: 300px;
+    opacity: 0.05;
+    filter: grayscale(0.35) sepia(0.35) hue-rotate(120deg) saturate(2.2) brightness(0.85);
+    pointer-events: none;
 }
 
 .visually-hidden {
@@ -56,6 +78,7 @@ body {
 /* ---------- Topbar ---------- */
 
 .topbar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,6 +86,26 @@ body {
     padding: 22px clamp(20px, 4vw, 56px);
     background: var(--teal-900);
     color: var(--cream);
+    overflow: hidden;
+}
+
+.topbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../assets/img/patron-veterinario.jpg");
+    background-repeat: repeat;
+    background-size: 220px;
+    opacity: 0.16;
+    filter: grayscale(1) brightness(2.6) contrast(0.9);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+.topbar__brand,
+.topbar__clock {
+    position: relative;
+    z-index: 1;
 }
 
 .topbar__brand {
