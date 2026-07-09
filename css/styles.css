@@ -45,15 +45,26 @@ body {
 
 body {
     position: relative;
-    isolation: isolate;
-    background-color: var(--cream);
     background-image:
-        radial-gradient(circle at 100% 0%, var(--teal-100) 0%, transparent 45%),
-        url("../assets/img/patron-veterinario.jpg");
-    background-repeat: no-repeat, repeat;
-    background-size: auto, 260px;
-    background-position: top right, center;
+        radial-gradient(circle at 100% 0%, var(--teal-100) 0%, transparent 45%);
     min-height: 100vh;
+}
+
+/* Textura de fondo: patrón de íconos veterinarios (huellas, jeringas,
+   transportadoras, vendas) recoloreado en tonos del proyecto y muy
+   atenuado, para que quede como una marca de agua ambiental y no
+   compita con el contenido. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url("assets/patron-veterinario.jpg");
+    background-repeat: repeat;
+    background-size: 300px;
+    opacity: 0.05;
+    filter: grayscale(0.35) sepia(0.35) hue-rotate(120deg) saturate(2.2) brightness(0.85);
+    pointer-events: none;
 }
 
 .visually-hidden {
@@ -83,7 +94,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("../assets/img/patron-veterinario.jpg");
+    background-image: url("assets/patron-veterinario.jpg");
     background-repeat: repeat;
     background-size: 220px;
     opacity: 0.16;

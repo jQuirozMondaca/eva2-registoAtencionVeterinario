@@ -37,3 +37,7 @@ procesarDatos();
 
 
 se utiliso para sacar la idea general de como utilizarlo 
+
+coplitop 
+aplical al fondo opacidad (se aceptan los cambios)
+radial-gradient(circle at 100% 0%, rgba(227, 241, 238, 0.45) 0%, transparent 45%)
