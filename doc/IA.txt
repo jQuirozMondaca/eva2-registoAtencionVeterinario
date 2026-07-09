@@ -1,0 +1,39 @@
+Consultas a IA Gemini
+
+* ¿como puedo puedo manejar este problema con js?: Muestra los mensajes de error en pantalla, sin alert
+
+r:Crea la función JavaScript:Para inyectar el texto y mostrar la caja.Crea una función reutilizable que seleccione el contenedor, le asigne el mensaje de error y lo haga visible.
+
+function mostrarErrorEnPantalla(mensaje) {
+  const cajaError = document.getElementById('caja-error');
+  
+  // 1. Inyectamos el texto del error
+  cajaError.textContent = mensaje;
+  
+  // 2. Hacemos visible el contenedor
+  cajaError.style.display = 'block';
+
+  // Opcional: Ocultar el mensaje automáticamente después de 5 segundos
+  setTimeout(() => {
+    cajaError.style.display = 'none';
+  }, 5000);
+}
+
+Captura el error y llama a la función:Integración con try...catch.Ahora, en lugar de usar console.error o alert(), simplemente llamas a tu nueva función pasándole el mensaje del error capturado.
+
+function procesarDatos() {
+  try {
+    // Simulamos un error
+    throw new Error("No se pudo conectar con el servidor. Intenta más tarde.");
+    
+  } catch (error) {
+    // Mostramos el error en la interfaz web
+    mostrarErrorEnPantalla(error.message);
+  }
+}
+
+// Ejecutamos la función para ver el resultado
+procesarDatos();
+
+
+se utiliso para sacar la idea general de como utilizarlo 

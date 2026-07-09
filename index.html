@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Atención Veterinaria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__brand">
+        <svg
+          class="topbar__mark"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <ellipse cx="14" cy="14" rx="5" ry="6.5" fill="currentColor" />
+          <ellipse cx="34" cy="14" rx="5" ry="6.5" fill="currentColor" />
+          <ellipse cx="7" cy="27" rx="4" ry="5.5" fill="currentColor" />
+          <ellipse cx="41" cy="27" rx="4" ry="5.5" fill="currentColor" />
+          <path
+            d="M24 22c-7 0-13 5.5-13 11.5C11 39 16 41 24 41s13-2 13-7.5C37 27.5 31 22 24 22z"
+            fill="currentColor"
+          />
+        </svg>
+        <div>
+          <p class="topbar__eyebrow">Clínica Veterinaria</p>
+          <h1 class="topbar__title">Registro de Atención</h1>
+        </div>
+      </div>
+      <p class="topbar__clock" id="relojActual"></p>
+    </header>
+
+    <main class="layout">
+      <!-- FORMULARIO -->
+      <section class="panel panel--form" aria-labelledby="form-title">
+        <h2 id="form-title" class="panel__title">Nuevo ingreso</h2>
+        <p class="panel__subtitle">
+          Completa la ficha cuando llegue un paciente a la clínica.
+        </p>
+
+        <div id="mensajeValidacion" class="alerta" role="alert" hidden></div>
+
+        <form id="formMascota" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre de la mascota</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Ej: Luna"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="especie">Especie</label>
+            <select id="especie" name="especie">
+              <option value="" disabled selected>Selecciona una especie</option>
+              <option value="Perro">Perro</option>
+              <option value="Gato">Gato</option>
+              <option value="Ave">Ave</option>
+              <option value="Conejo">Conejo</option>
+              <option value="Roedor">Roedor</option>
+              <option value="Reptil">Reptil</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="propietario">Nombre del propietario</label>
+            <input
+              type="text"
+              id="propietario"
+              name="propietario"
+              placeholder="Ej: María Soto"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="edad">Edad (años)</label>
+            <input
+              type="number"
+              id="edad"
+              name="edad"
+              placeholder="Ej: 4"
+              min="0"
+              step="1"
+            />
+          </div>
+
+          <button type="submit" class="boton boton--primario">
+            <span>Registrar paciente</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- CONTENIDO DERECHO -->
+      <div class="columna-derecha">
+        <!-- ESTADISTICAS -->
+        <section class="stats" aria-label="Estadísticas de atención">
+          <div class="stat">
+            <p class="stat__valor" id="statTotal">0</p>
+            <p class="stat__etiqueta">Total registrados</p>
+          </div>
+          <div class="stat stat--pendiente">
+            <p class="stat__valor" id="statPendientes">0</p>
+            <p class="stat__etiqueta">Pendientes</p>
+          </div>
+          <div class="stat stat--atendido">
+            <p class="stat__valor" id="statAtendidos">0</p>
+            <p class="stat__etiqueta">Atendidos</p>
+          </div>
+        </section>
+
+        <!-- HERRAMIENTAS: buscar + filtro + orden -->
+        <section class="herramientas" aria-label="Buscar y filtrar pacientes">
+          <div class="campo campo--buscar">
+            <label for="buscador" class="visually-hidden"
+              >Buscar mascota por nombre</label
+            >
+            <input
+              type="search"
+              id="buscador"
+              placeholder="Buscar por nombre..."
+            />
+          </div>
+          <div
+            class="chips"
+            id="filtroEstado"
+            role="group"
+            aria-label="Filtrar por estado"
+          >
+            <button type="button" class="chip is-activo" data-filtro="todos">
+              Todos
+            </button>
+            <button type="button" class="chip" data-filtro="pendiente">
+              Pendientes
+            </button>
+            <button type="button" class="chip" data-filtro="atendido">
+              Atendidos
+            </button>
+          </div>
+          <button type="button" class="boton boton--secundario" id="btnOrdenar">
+            Ordenar A–Z
+          </button>
+        </section>
+
+        <!-- LISTADO -->
+        <section class="panel panel--lista" aria-labelledby="lista-title">
+          <h2 id="lista-title" class="panel__title">Sala de espera</h2>
+          <div id="listaMascotas" class="lista-mascotas">
+            <!-- Las tarjetas se insertan dinámicamente vía JS -->
+          </div>
+          <p id="estadoVacio" class="estado-vacio" hidden>
+            Aún no hay pacientes registrados. Completa el formulario para
+            comenzar.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Registro de Atención Veterinaria — Evaluación Práctica 2 · Programación
+        Front-End
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
