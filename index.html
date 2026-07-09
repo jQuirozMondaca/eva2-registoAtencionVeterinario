@@ -48,6 +48,19 @@
 
         <div id="mensajeValidacion" class="alerta" role="alert" hidden></div>
 
+        <!-- nombre propietario -->
+        <div class="campo">
+          <label for="propietario">Nombre del propietario</label>
+          <input
+            type="text"
+            id="propietario"
+            name="propietario"
+            placeholder="Ej: María Soto"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- nombre mascota -->
         <form id="formMascota" novalidate>
           <div class="campo">
             <label for="nombre">Nombre de la mascota</label>
@@ -72,17 +85,6 @@
               <option value="Reptil">Reptil</option>
               <option value="Otro">Otro</option>
             </select>
-          </div>
-
-          <div class="campo">
-            <label for="propietario">Nombre del propietario</label>
-            <input
-              type="text"
-              id="propietario"
-              name="propietario"
-              placeholder="Ej: María Soto"
-              autocomplete="off"
-            />
           </div>
 
           <div class="campo">
